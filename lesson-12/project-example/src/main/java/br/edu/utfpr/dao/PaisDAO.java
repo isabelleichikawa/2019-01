@@ -12,7 +12,7 @@ import java.util.List;
 import lombok.extern.java.Log;
 
 @Log
-public class PaisDAO {
+public class PaisDAO extends Template {
 
     // Responsável por criar a tabela País no banco
     public PaisDAO() {
@@ -31,6 +31,7 @@ public class PaisDAO {
         }
     }
 
+    @Override
     public boolean incluir(PaisDTO pais) {
         try ( Connection conn = DriverManager.getConnection("jdbc:derby:memory:database")) {
 
@@ -54,6 +55,7 @@ public class PaisDAO {
         return false;
     }
 
+    @Override
     public List<PaisDTO> listarTodos() {
 
         List<PaisDTO> resultado = new ArrayList<>();
@@ -86,6 +88,7 @@ public class PaisDAO {
         return resultado;
     }
 
+    @Override
     public boolean excluir(int id) {
 
         try ( Connection conn = DriverManager.getConnection("jdbc:derby:memory:database")) {
@@ -107,6 +110,7 @@ public class PaisDAO {
         return false;
     }
 
+    @Override
     public boolean alterar(PaisDTO pais) {
         try ( Connection conn = DriverManager.getConnection("jdbc:derby:memory:database")) {
 
@@ -129,6 +133,7 @@ public class PaisDAO {
         return false;
     }
     
+    @Override
     public PaisDTO listarPorId (int id) {
         return this.listarTodos().stream().filter(p -> p.getId() == id).findAny().orElseThrow(RuntimeException::new);
     }
