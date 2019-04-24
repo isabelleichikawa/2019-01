@@ -18,4 +18,15 @@ public abstract class Template<T> {
     protected abstract boolean excluir(int id);
     protected abstract boolean alterar(PaisDTO pais);
     protected abstract PaisDTO listarPorId (int id);
+    
+    public final void template(){
+        int id = 0;
+        PaisDTO pais = new PaisDTO();
+        
+        this.incluir(pais);
+        this.listarTodos();
+        this.excluir(id);
+        this.alterar(pais);
+        this.listarPorId(id);
+    }
 }
